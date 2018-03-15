@@ -19,6 +19,7 @@ public class UserController {
 	@RequestMapping("/getusername")
 	public String hello(HttpServletRequest request, Model model){
 		Integer id = Integer.parseInt(request.getParameter("id"));
+		System.out.println(id);
 		model.addAttribute("user", userService.getUser(id));
 		return "show";
 	}
