@@ -16,11 +16,21 @@ public class UserController {
 	@Autowired
 	public UserServiceImpl userService;
 	
+	
 	@RequestMapping("/getusername")
 	public String hello(HttpServletRequest request, Model model){
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		System.out.println(id);
 		model.addAttribute("user", userService.getUser(id));
 		return "show";
+	}
+	
+	@RequestMapping("/hellow")
+	public String hello2(HttpServletRequest request, Model model){
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		String queryByRedis = userService.queryByRedis(id);
+		System.out.println("queryByRedis:======="+queryByRedis);
+		model.addAttribute("user", queryByRedis);
+		return "show2";
 	}
 }
